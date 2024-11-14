@@ -1,11 +1,6 @@
-from enum import Enum
-
 from pydantic import BaseModel
 
-
-class FeedbackEnum(Enum):
-    GOOD = "good"
-    BAD = "bad"
+from src.app.domain.entity.feedback import FeedbackEnum
 
 
 class GiveFeedbackRequest(BaseModel):

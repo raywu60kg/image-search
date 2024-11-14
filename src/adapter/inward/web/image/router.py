@@ -20,4 +20,4 @@ def search_image(request: ImageSearchRequest) -> ImageSearchResponse:
         # Convert byte data to base64 string
         img_base64 = base64.b64encode(img_bytes).decode("utf-8")
 
-    return ImageSearchResponse(search_record_id=1, base64_image=img_base64)
+    return ImageSearchResponse(search_record_id=1, base64_image=img_base64, image_id=0)
