@@ -5,7 +5,7 @@ from src.app.domain.entity.feedback import FeedbackEnum
 
 class GiveFeedbackRequest(BaseModel):
     feedback: FeedbackEnum
-    search_record_id: int
+    search_image_record_id: int
 
 
 class GiveFeedbackResponse(BaseModel):
