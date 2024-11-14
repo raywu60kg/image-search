@@ -1,6 +1,6 @@
 from enum import Enum
 
-from src.app.domain.entity.image.search_image_record import SearchImageRecord
+from src.app.domain.entity.search_image_record import SearchImageRecord
 
 
 class FeedbackEnum(Enum):
