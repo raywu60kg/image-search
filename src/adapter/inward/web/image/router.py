@@ -9,8 +9,8 @@ from src.adapter.inward.web.image.schema import ImageSearchRequest, ImageSearchR
 router = APIRouter(prefix="/v1/image", tags=["image"])
 
 
-@router.post("/search", status_code=200)
-def search_image(request: ImageSearchRequest) -> ImageSearchResponse:
+@router.post("/search/clip", status_code=200)
+def search_image_clip(request: ImageSearchRequest) -> ImageSearchResponse:
     with Image.open("image_data/val2014/COCO_val2014_000000000042.jpg") as img:
         # Convert image to byte data
         buffered = BytesIO()

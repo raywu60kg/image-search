@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from enum import Enum
 
 import numpy as np
 import torch
@@ -9,6 +10,10 @@ from transformers import CLIPModel, CLIPProcessor  # type: ignore
 model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")  # type: ignore
 processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")  # type: ignore
 placeholder_image = Image.new("RGB", (1, 2))
+
+
+class EmbeddingModelEnum(Enum):
+    CLIP = "clip"
 
 
 class EmbeddingStrategy(ABC):

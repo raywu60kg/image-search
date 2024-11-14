@@ -9,6 +9,7 @@ packages = [{include = "image_search"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 fastapi = {extras = ["standard"], version = "^0.115.5"}
+sqlalchemy = "^2.0.36"
 
 
 [tool.poetry.group.script.dependencies]
