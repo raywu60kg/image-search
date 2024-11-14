@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "image-search"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "image_search"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = {extras = ["standard"], version = "^0.115.5"}
+
+
+[tool.poetry.group.script.dependencies]
+transformers = {extras = ["torch"], version = "^4.46.2"}
+pillow = "^11.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.7.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
