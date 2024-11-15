@@ -12,6 +12,7 @@ sqlalchemy = "^2.0.36"
 psycopg2-binary = "2.9.9"
 transformers = {extras = ["torch"], version = "^4.46.2"}
 pillow = "^11.0.0"
+pgvector = "^0.3.6"
 
 
 [tool.poetry.group.dev.dependencies]

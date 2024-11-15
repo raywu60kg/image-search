@@ -18,7 +18,10 @@ from src.adapter.outward.persistence.search_image_record_sqlalchemy_model import
 config = context.config
 config.set_main_option(
     "sqlalchemy.url",
-    os.getenv("MIGRATION_DB_URI", "postgresql+psycopg2://pca:pca@localhost:5432/pca"),
+    os.getenv(
+        "MIGRATION_DB_URI",
+        "postgresql+psycopg2://image_search:image_search@localhost:5432/image_search",
+    ),
 )
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.

@@ -9,3 +9,6 @@ mypy: ## type check
 
 server-dev: ## run dev server
 	fastapi dev src/main.py
+
+exec-db: ## exec db
+	docker compose exec db psql -U image_search -d image_search
