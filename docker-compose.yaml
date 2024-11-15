@@ -1,0 +1,23 @@
+services:
+  server:
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: .
+      target: production
+    ports:
+      - "80:80"
+    environment:
+      - DB_URI=postgresql+asyncpg://image_search:image_search@db:5432/image_search
+    depends_on:
+      - db
+  db:
+    build:
+      context: ./pgvector
+      dockerfile: Dockerfile
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=image_search
+      - POSTGRES_PASSWORD=image_search
+      - POSTGRES_DB=image_search
+

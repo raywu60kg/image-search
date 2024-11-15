@@ -1,0 +1,3 @@
+[submodule "pgvector"]
+	path = pgvector
+	url = git@github.com:pgvector/pgvector.git
