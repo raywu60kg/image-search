@@ -1,5 +1,5 @@
-from src.app.domain.common.exception import ImageSearchApiError
 from src.app.domain.entity.search_image_record import SearchImageRecordId
+from src.common.exception import ImageSearchApiError
 
 
 class SearchImageRecordNotFoundException(ImageSearchApiError):
