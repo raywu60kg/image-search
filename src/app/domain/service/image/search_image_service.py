@@ -1,11 +1,14 @@
 from src.app.domain.entity.embedding_strategy import EmbeddingModelEnum
-from src.app.domain.entity.search_image_record import SearchImageRecord
+from src.app.domain.entity.search_image_record import (
+    SearchImageRecord,
+    SearchImageRecordId,
+)
 from src.app.domain.entity.text_query import TextQuery
 from src.app.port.inward.image.search_image_use_case import SearchImageUseCase
-from src.app.port.outward.image.save_search_image_record_port import (
+from src.app.port.outward.image.search_image_port import SearchImagePort
+from src.app.port.outward.search_image_record.save_search_image_record_port import (
     SaveSearchImageRecordPort,
 )
-from src.app.port.outward.image.search_image_port import SearchImagePort
 
 
 class SearchImageService(SearchImageUseCase):
@@ -19,7 +22,7 @@ class SearchImageService(SearchImageUseCase):
 
     def search_image_by_clip_cosine_score(
         self, text_query: TextQuery
-    ) -> SearchImageRecord:
+    ) -> SearchImageRecordId:
         result_image = self.__search_image_port.search_image_by_clip_cosine_score(
             text_query=text_query
         )
