@@ -20,4 +20,13 @@ services:
       - POSTGRES_USER=image_search
       - POSTGRES_PASSWORD=image_search
       - POSTGRES_DB=image_search
-
+  alembic:
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: .
+      target: alembic
+    command: bash -c "alembic upgrade head"
+    environment:
+      - MIGRATION_DB_URI=postgresql+psycopg2://image_search:image_search@db:5432/image_search
+    depends_on:
+      - db
