@@ -2,6 +2,12 @@ from src.common.exception import ImageSearchApiError
 
 
 class SearchImageRecordNotFoundInDatabaseException(ImageSearchApiError):
-    def __init__(self, search_image_record_id: int):
+    def __init__(self, search_image_record_id: int) -> None:
         self.message = f"search_image_record_id: {search_image_record_id} not found!"
+        super().__init__(self.message)
+
+
+class MapToSearchImageRecordSqlalchemyModelException(ImageSearchApiError):
+    def __init__(self) -> None:
+        self.message = "No result image!"
         super().__init__(self.message)

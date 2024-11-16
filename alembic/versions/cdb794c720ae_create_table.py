@@ -55,9 +55,8 @@ def upgrade() -> None:
     op.create_table(
         "feedback",
         sa.Column("id", sa.Integer(), nullable=False),
-        sa.Column("text_query", sa.String(), nullable=False),
         sa.Column(
-            "feedback", sa.Enum("GOOD", "BAD", name="feedbacke_num"), nullable=False
+            "feedback", sa.Enum("GOOD", "BAD", name="feedback_enum"), nullable=False
         ),
         sa.Column("search_image_record_id", sa.Integer(), nullable=False),
         sa.ForeignKeyConstraint(
@@ -74,4 +73,6 @@ def downgrade() -> None:
     op.drop_table("feedback")
     op.drop_table("search_image_record")
     op.drop_table("image")
+    op.execute("DROP TYPE IF EXISTS embedding_model_enum")
+    op.execute("DROP TYPE IF EXISTS feedback_enum")
     # ### end Alembic commands ###

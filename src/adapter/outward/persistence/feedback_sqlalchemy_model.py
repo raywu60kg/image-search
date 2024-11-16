@@ -1,4 +1,4 @@
-from sqlalchemy import Enum, ForeignKey, Integer, String
+from sqlalchemy import Enum, ForeignKey, Integer
 from sqlalchemy.orm import Mapped, mapped_column
 
 from src.adapter.outward.persistence.database import Base
@@ -8,7 +8,6 @@ from src.app.domain.entity.feedback import FeedbackEnum
 class FeedbackSqlalchemyModel(Base):
     __tablename__ = "feedback"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    text_query: Mapped[str] = mapped_column(String, nullable=False)
     feedback: Mapped[FeedbackEnum] = mapped_column(
         Enum(FeedbackEnum),
         nullable=False,

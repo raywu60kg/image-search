@@ -60,4 +60,4 @@ def upgrade() -> None:
 
 def downgrade() -> None:
     conn = op.get_bind()
-    conn.execute(text("TRUNCATE TABLE your_table_name"))
+    conn.execute(text("TRUNCATE TABLE image CASCADE"))

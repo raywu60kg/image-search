@@ -31,3 +31,8 @@ class ClipEmbedding(EmbeddingStrategy):
             dim=-1, keepdim=True
         )
         return text_embedding.reshape(-1).numpy()  # type: ignore
+
+
+class DummyEmbedding(EmbeddingStrategy):
+    def calculate_query_embedding(self, query: str) -> NDArray[np.float32]:
+        return np.zeros(512, dtype=np.float32)

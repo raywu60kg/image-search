@@ -30,7 +30,7 @@ class SearchImageRecord:
         return self.__search_image_record_id
 
     @property
-    def query(self) -> TextQuery:
+    def text_query(self) -> TextQuery:
         return self.__text_query
 
     @property

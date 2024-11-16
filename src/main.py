@@ -8,10 +8,13 @@ from src.adapter.inward.web.common.middleware.redirect_tailing_slash import (
 )
 from src.adapter.inward.web.feedback.router import router as feedback_router
 from src.adapter.inward.web.image.router import router as image_router
-from src.app.domain.common.exception import ImageSearchApiError
+from src.adapter.outward.persistence.search_image_record_exception import (
+    MapToSearchImageRecordSqlalchemyModelException,
+)
 from src.app.domain.service.feedback.give_feedback_exception import (
     SearchImageRecordNotFoundException,
 )
+from src.common.exception import ImageSearchApiError
 
 app = FastAPI()
 
@@ -40,4 +43,8 @@ def create_exception_handler(
 app.add_exception_handler(
     exc_class_or_status_code=SearchImageRecordNotFoundException,
     handler=create_exception_handler(404, "Entity does not exist."),  # type: ignore
+)
+app.add_exception_handler(
+    exc_class_or_status_code=MapToSearchImageRecordSqlalchemyModelException,
+    handler=create_exception_handler(422, "Data process error."),  # type: ignore
 )
