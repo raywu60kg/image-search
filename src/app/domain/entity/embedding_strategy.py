@@ -9,7 +9,7 @@ from transformers import CLIPModel, CLIPProcessor  # type: ignore
 
 model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")  # type: ignore
 processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")  # type: ignore
-placeholder_image = Image.new("RGB", (1, 2))
+dummy_image = Image.new("RGB", (1, 2))
 
 
 class EmbeddingModelEnum(Enum):
@@ -24,7 +24,9 @@ class EmbeddingStrategy(ABC):
 
 class ClipEmbedding(EmbeddingStrategy):
     def calculate_query_embedding(self, query: str) -> NDArray[np.float32]:
-        inputs = processor(text=query, images=[], return_tensors="pt", padding=True)  # type: ignore
+        inputs = processor(  # type: ignore
+            text=query, images=[dummy_image], return_tensors="pt", padding=True
+        )
         with torch.no_grad():
             outputs = model(**inputs)  # type: ignore
         text_embedding = outputs.text_embeds / outputs.text_embeds.norm(  # type: ignore

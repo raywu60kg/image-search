@@ -13,12 +13,13 @@ router = APIRouter(prefix="/v1/image", tags=["image"])
 
 @router.post("/search/clip", status_code=200)
 @inject
-def search_image_by_clip_cosine_score(
+def get_most_similar_image_by_clip_cosine_score(
     request: ImageSearchRequest,
     search_image_use_case: SearchImageUseCase = Depends(
         Provide[Container.search_image_service]
     ),
 ) -> ImageSearchResponse:
+    print(search_image_use_case)
     search_image_record = search_image_use_case.search_image_by_clip_cosine_score(
         text_query=TextQuery(query=request.query, embedding_strategy=ClipEmbedding())
     )

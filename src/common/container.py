@@ -69,8 +69,9 @@ class Container(containers.DeclarativeContainer):
 
     search_image_record_persistence_adapter = providers.Factory(
         SearchImageRecordPersistenceAdapter,
-        search_image_mapper=search_image_record_mapper,
+        search_image_record_mapper=search_image_record_mapper,
         search_image_record_repository=search_image_record_repository,
+        image_repository=image_repository,
     )
 
     give_feedback_service = providers.Factory(

@@ -9,8 +9,8 @@ Base = declarative_base()
 
 
 class Database:
-    def __init__(self, db_url: str) -> None:
-        self.__engine = create_engine(db_url, echo=True)
+    def __init__(self, db_uri: str) -> None:
+        self.__engine = create_engine(db_uri, echo=True)
         self.__session_factory = orm.scoped_session(
             orm.sessionmaker(
                 autocommit=False,

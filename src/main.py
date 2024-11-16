@@ -12,10 +12,12 @@ from src.adapter.inward.web.image.router import router as image_router
 from src.app.domain.service.feedback.give_feedback_exception import (
     SearchImageRecordNotFoundException,
 )
+from src.common.container import Container
 from src.common.exception import ImageSearchApiError
 
 app = FastAPI()
-
+container = Container()
+app.state.container = container
 app.add_middleware(RedirectTailingSlashMiddleware)
 
 app.include_router(image_router)
