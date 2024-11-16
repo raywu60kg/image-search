@@ -1,7 +1,7 @@
-from src.adapter.outward.persistence.search_image_record_exception import (
+from src.adapter.outward.persistence.search_image_record.search_image_record_exception import (
     MapToSearchImageRecordSqlalchemyModelException,
 )
-from src.adapter.outward.persistence.search_image_record_sqlalchemy_model import (
+from src.adapter.outward.persistence.search_image_record.search_image_record_sqlalchemy_model import (
     SearchImageRecordSqlalchemyModel,
 )
 from src.app.domain.entity.embedding_strategy import DummyEmbedding

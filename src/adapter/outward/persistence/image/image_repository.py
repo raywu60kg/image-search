@@ -5,7 +5,10 @@ from numpy.typing import NDArray
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from src.adapter.outward.persistence.image_sqlalchemy_model import ImageSqlalchemyModel
+from src.adapter.outward.persistence.image.image_sqlalchemy_model import (
+    ImageSqlalchemyModel,
+)
+from src.app.domain.entity.embedding_strategy import EmbeddingModelEnum
 
 
 class ImageRepository:
@@ -23,6 +26,7 @@ class ImageRepository:
                         text_query_vector.tolist()
                     )
                 )
+                .where(ImageSqlalchemyModel.image_embedding == EmbeddingModelEnum.CLIP)
                 .limit(1)
             )
         return res.one()

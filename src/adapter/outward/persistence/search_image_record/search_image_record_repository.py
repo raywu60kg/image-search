@@ -3,10 +3,10 @@ from typing import Callable
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from src.adapter.outward.persistence.search_image_record_exception import (
+from src.adapter.outward.persistence.search_image_record.search_image_record_exception import (
     SearchImageRecordNotFoundInDatabaseException,
 )
-from src.adapter.outward.persistence.search_image_record_sqlalchemy_model import (
+from src.adapter.outward.persistence.search_image_record.search_image_record_sqlalchemy_model import (
     SearchImageRecordSqlalchemyModel,
 )
 
@@ -34,8 +34,8 @@ class SearchImageRecordRepository:
 
     def save(
         self, search_image_record_sqlalchemy_model: SearchImageRecordSqlalchemyModel
-    ) -> SearchImageRecordSqlalchemyModel:
+    ) -> int:
         with self.__session_factory() as session:
             session.add(search_image_record_sqlalchemy_model)
             session.commit()
-        return search_image_record_sqlalchemy_model
+        return search_image_record_sqlalchemy_model.id

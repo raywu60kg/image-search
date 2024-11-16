@@ -5,11 +5,13 @@ from sqlalchemy import engine_from_config, pool
 
 from alembic import context
 from src.adapter.outward.persistence.database import Base
-from src.adapter.outward.persistence.feedback_sqlalchemy_model import (
+from src.adapter.outward.persistence.feedback.feedback_sqlalchemy_model import (
     FeedbackSqlalchemyModel,
 )
-from src.adapter.outward.persistence.image_sqlalchemy_model import ImageSqlalchemyModel
-from src.adapter.outward.persistence.search_image_record_sqlalchemy_model import (
+from src.adapter.outward.persistence.image.image_sqlalchemy_model import (
+    ImageSqlalchemyModel,
+)
+from src.adapter.outward.persistence.search_image_record.search_image_record_sqlalchemy_model import (
     SearchImageRecordSqlalchemyModel,
 )
 

@@ -1,4 +1,6 @@
-from src.adapter.outward.persistence.image_sqlalchemy_model import ImageSqlalchemyModel
+from src.adapter.outward.persistence.image.image_sqlalchemy_model import (
+    ImageSqlalchemyModel,
+)
 from src.app.domain.entity.image import ImageEntity, ImageId
 
 

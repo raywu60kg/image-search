@@ -8,5 +8,7 @@ from src.app.domain.entity.search_image_record import (
 
 class LoadSearchImageRecordPort(ABC):
     @abstractmethod
-    def load(self, search_image_record: SearchImageRecordId) -> SearchImageRecord:
+    def minimal_load(
+        self, search_image_record: SearchImageRecordId
+    ) -> SearchImageRecord:
         pass
