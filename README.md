@@ -54,6 +54,25 @@ Go to the browser *http://localhost:80/docs*
 - Dependency Injection: python-dependency-injector
 - Static Analysis and Linting: Mypy / Ruff
 
+## Setup
+### Requirement
+- docker 
+- docker-compose
+
+###  1. Get pgvector submodule
+```
+git submodule init
+git submodule update
+```
+
+### 2. Run
+```
+docker compose up
+```
+
+### 3. Wait for the alembic Database upgrade
+This might take a while
+
 ## Farther discussion
 - Volume for the CLIP model.
 - Server return image_id then get image from CDN.
