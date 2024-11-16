@@ -6,6 +6,8 @@
 
 ## Farther discussion
 - server return image_id then get image from CDN.
+- use join in SearchImageRecordPersistenceAdapter 
+- async
 
 ## Reference 
 - https://github.com/thombergs/buckpal 

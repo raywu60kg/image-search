@@ -20,9 +20,9 @@ class SearchImageRecordRepository:
     ) -> SearchImageRecordSqlalchemyModel:
         with self.__session_factory() as session:
             res = session.execute(
-                select(SearchImageRecordSqlalchemyModel).where(
-                    SearchImageRecordSqlalchemyModel.id == search_image_record_id
-                )
+                select(SearchImageRecordSqlalchemyModel)
+                .where(SearchImageRecordSqlalchemyModel.id == search_image_record_id)
+                .limit(1)
             )
 
             search_image_record_sqlalchemy_model = res.scalar()

@@ -34,7 +34,8 @@ class Container(containers.DeclarativeContainer):
     )
     wiring_config = containers.WiringConfiguration(
         modules=[
-            "src.adapter.inward.web.router",
+            "src.adapter.inward.web.feedback.router",
+            "src.adapter.inward.web.image.router",
         ]
     )
     database = providers.Singleton(Database, db_uri=config.db_uri)

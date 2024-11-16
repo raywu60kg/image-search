@@ -1,23 +1,32 @@
-import base64
-from io import BytesIO
+from dependency_injector.wiring import Provide, inject
+from fastapi import APIRouter, Depends
 
-from fastapi import APIRouter
-from PIL import Image
-
+from src.adapter.inward.web.image.image_exception import SearchImageRecordIdIsNone
 from src.adapter.inward.web.image.schema import ImageSearchRequest, ImageSearchResponse
+from src.app.domain.entity.embedding_strategy import ClipEmbedding
+from src.app.domain.entity.text_query import TextQuery
+from src.app.port.inward.image.search_image_use_case import SearchImageUseCase
+from src.common.container import Container
 
 router = APIRouter(prefix="/v1/image", tags=["image"])
 
 
 @router.post("/search/clip", status_code=200)
-def search_image_clip(request: ImageSearchRequest) -> ImageSearchResponse:
-    with Image.open("image_data/val2014/COCO_val2014_000000000042.jpg") as img:
-        # Convert image to byte data
-        buffered = BytesIO()
-        img.save(buffered, format=img.format)
-        img_bytes = buffered.getvalue()
+@inject
+def search_image_by_clip_cosine_score(
+    request: ImageSearchRequest,
+    search_image_use_case: SearchImageUseCase = Depends(
+        Provide[Container.search_image_service]
+    ),
+) -> ImageSearchResponse:
+    search_image_record = search_image_use_case.search_image_by_clip_cosine_score(
+        text_query=TextQuery(query=request.query, embedding_strategy=ClipEmbedding())
+    )
+    if search_image_record.search_image_record_id is None:
+        raise SearchImageRecordIdIsNone()
 
-        # Convert byte data to base64 string
-        img_base64 = base64.b64encode(img_bytes).decode("utf-8")
-
-    return ImageSearchResponse(search_record_id=1, base64_image=img_base64, image_id=0)
+    return ImageSearchResponse(
+        search_record_id=search_image_record.search_image_record_id.value,
+        base64_image=search_image_record.result_image.base64_image,
+        image_id=search_image_record.result_image.image_id.value,
+    )

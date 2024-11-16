@@ -18,7 +18,7 @@ class SearchImageRecord:
         search_image_record_id: SearchImageRecordId | None,
         text_query: TextQuery,
         embedding_model: EmbeddingModelEnum,
-        result_image: ImageEntity | None,
+        result_image: ImageEntity,
     ) -> None:
         self.__search_image_record_id = search_image_record_id
         self.__text_query = text_query
@@ -34,7 +34,7 @@ class SearchImageRecord:
         return self.__text_query
 
     @property
-    def result_image(self) -> ImageEntity | None:
+    def result_image(self) -> ImageEntity:
         return self.__result_image
 
     @property

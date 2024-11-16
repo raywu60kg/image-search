@@ -8,7 +8,7 @@ from src.app.domain.entity.search_image_record import (
 
 class LoadSearchImageRecordPort(ABC):
     @abstractmethod
-    def minimal_load(
+    def load_without_text_embedding(
         self, search_image_record: SearchImageRecordId
     ) -> SearchImageRecord:
         pass
