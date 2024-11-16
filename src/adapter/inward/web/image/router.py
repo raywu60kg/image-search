@@ -19,7 +19,6 @@ def get_most_similar_image_by_clip_cosine_score(
         Provide[Container.search_image_service]
     ),
 ) -> ImageSearchResponse:
-    print(search_image_use_case)
     search_image_record = search_image_use_case.search_image_by_clip_cosine_score(
         text_query=TextQuery(query=request.query, embedding_strategy=ClipEmbedding())
     )

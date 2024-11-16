@@ -52,6 +52,6 @@ class SearchImageRecordPersistenceAdapter(
 
         return SearchImageRecordId(
             self.__search_image_record_repository.save(
-                search_image_record_sqlalchemy_model.search_image_record_sqlalchemy_model
+                search_image_record_sqlalchemy_model
             )
         )

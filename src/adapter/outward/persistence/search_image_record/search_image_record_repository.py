@@ -38,4 +38,4 @@ class SearchImageRecordRepository:
         with self.__session_factory() as session:
             session.add(search_image_record_sqlalchemy_model)
             session.commit()
-        return search_image_record_sqlalchemy_model.id
+            return search_image_record_sqlalchemy_model.id

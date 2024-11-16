@@ -15,4 +15,4 @@ class FeedbackRepository:
         with self.__session_factory() as session:
             session.add(feedback_sqlalchemy_model)
             session.commit()
-        return feedback_sqlalchemy_model.id
+            return feedback_sqlalchemy_model.id

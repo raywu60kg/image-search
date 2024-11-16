@@ -9,6 +9,12 @@ from src.adapter.inward.web.common.middleware.redirect_tailing_slash import (
 from src.adapter.inward.web.feedback.router import router as feedback_router
 from src.adapter.inward.web.image.image_exception import SearchImageRecordIdIsNone
 from src.adapter.inward.web.image.router import router as image_router
+from src.adapter.outward.persistence.feedback.feedback_exception import (
+    SearchImageRecordNotFoundInFeedbackMapperException,
+)
+from src.adapter.outward.persistence.search_image_record.search_image_record_exception import (
+    SearchImageRecordNotFoundInDatabaseException,
+)
 from src.app.domain.service.feedback.give_feedback_exception import (
     SearchImageRecordNotFoundException,
 )
@@ -42,9 +48,18 @@ def create_exception_handler(
 
 app.add_exception_handler(
     exc_class_or_status_code=SearchImageRecordNotFoundException,
-    handler=create_exception_handler(404, "Entity does not exist."),  # type: ignore
+    handler=create_exception_handler(404, "Search image record does not exist."),  # type: ignore
 )
 app.add_exception_handler(
     exc_class_or_status_code=SearchImageRecordIdIsNone,
     handler=create_exception_handler(422, "search image record data process error."),  # type: ignore
+)
+
+app.add_exception_handler(
+    exc_class_or_status_code=SearchImageRecordNotFoundInFeedbackMapperException,
+    handler=create_exception_handler(422, "Search image not found in feedback mapper!"),  # type: ignore
+)
+app.add_exception_handler(
+    exc_class_or_status_code=SearchImageRecordNotFoundInDatabaseException,
+    handler=create_exception_handler(404, "Search image not found in database"),  # type: ignore
 )
