@@ -1,4 +1,3 @@
-from src.app.domain.entity.embedding_strategy import EmbeddingModelEnum
 from src.app.domain.entity.search_image_record import (
     SearchImageRecord,
 )
@@ -29,13 +28,11 @@ class SearchImageService(SearchImageUseCase):
             SearchImageRecord(
                 search_image_record_id=None,
                 text_query=text_query,
-                embedding_model=EmbeddingModelEnum.CLIP,
                 result_image=result_image,
             )
         )
         return SearchImageRecord(
             search_image_record_id=search_image_record_id,
             text_query=text_query,
-            embedding_model=EmbeddingModelEnum.CLIP,
             result_image=result_image,
         )

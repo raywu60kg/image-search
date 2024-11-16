@@ -14,6 +14,7 @@ import numpy as np
 from sqlalchemy import text
 
 from alembic import op
+from src.app.domain.entity.embedding_strategy import EmbeddingModelEnum
 
 # revision identifiers, used by Alembic.
 revision: str = "b80c2aaff018"
@@ -44,16 +45,19 @@ def upgrade() -> None:
             text("""
                 INSERT INTO image ( 
                     image_base64, 
-                    image_embedding
+                    image_embedding,
+                    embedding_model
                 )
                 VALUES (
                     :image_base64, 
-                    :image_embedding
+                    :image_embedding,
+                    :embedding_model
                 )
             """),
             {
                 "image_base64": base64_image_list[i],
                 "image_embedding": image_embedding[i].tolist(),
+                "embedding_model": EmbeddingModelEnum.CLIP.value.upper(),
             },
         )
 

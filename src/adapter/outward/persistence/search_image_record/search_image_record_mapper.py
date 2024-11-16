@@ -27,7 +27,6 @@ class SearchImageRecordMapper:
                 query=search_image_record_sqlalchemy_model.text_query,
                 embedding_strategy=DummyEmbedding(),
             ),
-            embedding_model=search_image_record_sqlalchemy_model.embedding_model,
             result_image=ImageMapper().map_to_image(image_sqlalchemy_model),
         )
 
@@ -39,6 +38,5 @@ class SearchImageRecordMapper:
             if search_image_record.search_image_record_id is not None
             else None,
             text_query=search_image_record.text_query.query,
-            embedding_model=search_image_record.embedding_model,
             result_image_id=search_image_record.result_image.image_id.value,
         )

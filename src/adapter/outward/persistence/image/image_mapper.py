@@ -9,4 +9,5 @@ class ImageMapper:
         return ImageEntity(
             image_id=ImageId(image_sqlalchemy_model.id),
             base64_image=image_sqlalchemy_model.image_base64,
+            embedding_model=image_sqlalchemy_model.embedding_model,
         )

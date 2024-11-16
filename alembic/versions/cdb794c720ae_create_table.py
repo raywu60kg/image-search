@@ -34,17 +34,17 @@ def upgrade() -> None:
             pgvector.sqlalchemy.vector.VECTOR(dim=512),  # type: ignore
             nullable=False,
         ),
+        sa.Column(
+            "embedding_model",
+            sa.Enum("CLIP", name="embedding_model_enum"),
+            nullable=False,
+        ),
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_table(
         "search_image_record",
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("text_query", sa.String(), nullable=False),
-        sa.Column(
-            "embedding_model",
-            sa.Enum("CLIP", name="embedding_model_enum"),
-            nullable=False,
-        ),
         sa.Column("result_image_id", sa.Integer(), nullable=False),
         sa.ForeignKeyConstraint(
             ["result_image_id"],
