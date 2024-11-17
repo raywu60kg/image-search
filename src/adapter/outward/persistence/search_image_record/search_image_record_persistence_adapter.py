@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from src.adapter.outward.persistence.image.image_repository import ImageRepository
 from src.adapter.outward.persistence.search_image_record.search_image_record_mapper import (
     SearchImageRecordMapper,
@@ -30,11 +32,14 @@ class SearchImageRecordPersistenceAdapter(
         self.__search_image_record_repository = search_image_record_repository
         self.__image_repository = image_repository
 
-    def load_without_text_embedding(
-        self, search_image_record: SearchImageRecordId
+    @lru_cache(128)
+    def load_without_text_embedding(  # type: ignore
+        self, search_image_record_id: SearchImageRecordId
     ) -> SearchImageRecord:
         search_image_record_sqlalchemy_model = (
-            self.__search_image_record_repository.get_by_id(search_image_record.value)
+            self.__search_image_record_repository.get_by_id(
+                search_image_record_id.value
+            )
         )
         image_sqlalchemy_model = self.__image_repository.get_by_id(
             image_id=search_image_record_sqlalchemy_model.result_image_id

@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from enum import Enum
+from functools import lru_cache
 
 import numpy as np
 import torch
@@ -23,7 +24,8 @@ class EmbeddingStrategy(ABC):
 
 
 class ClipEmbedding(EmbeddingStrategy):
-    def calculate_query_embedding(self, query: str) -> NDArray[np.float32]:
+    @lru_cache(128)
+    def calculate_query_embedding(self, query: str) -> NDArray[np.float32]:  # type: ignore
         inputs = processor(  # type: ignore
             text=query, images=[dummy_image], return_tensors="pt", padding=True
         )

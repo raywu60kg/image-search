@@ -24,7 +24,7 @@ class GiveFeedbackService(GiveFeedbackUseCase):
     ) -> FeedbackId:
         search_image_record = (
             self.__load_search_image_record_port.load_without_text_embedding(
-                search_image_record=search_image_record_id
+                search_image_record_id=search_image_record_id
             )
         )
         if search_image_record.search_image_record_id is None:

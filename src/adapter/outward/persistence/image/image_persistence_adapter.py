@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from src.adapter.outward.persistence.image.image_mapper import ImageMapper
 from src.adapter.outward.persistence.image.image_repository import ImageRepository
 from src.app.domain.entity.image import ImageEntity
@@ -14,7 +16,8 @@ class ImagePersistenceAdapter(SearchImagePort):
         self.__image_mapper = image_mapper
         self.__image_repository = image_repository
 
-    def search_image_by_clip_cosine_score(self, text_query: TextQuery) -> ImageEntity:
+    @lru_cache(128)
+    def search_image_by_clip_cosine_score(self, text_query: TextQuery) -> ImageEntity:  # type: ignore
         image_sqlalchemy_model = self.__image_repository.get_by_clip_cosine_score(
             text_query.query_embedding
         )
