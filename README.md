@@ -20,7 +20,7 @@ output
 ```
 
 ### 2. Give feedback
-Give feedback on the *search_image_record_id* from 1. 
+Give feedback on the *search_image_record_id* from *Query*. 
 
 ```bash
 curl http://localhost:80/v1/feedback \
@@ -46,8 +46,8 @@ Go to the browser *http://localhost:80/docs*
 - API Server: FastAPI 
 - Code Architecture: Hexagonal Architecture
 - Containerization: Docker / Docker Compose
-- Vector search: pgvector
-- Embedding model: CLIP
+- Vector Search: pgvector
+- Embedding Model: CLIP
 - Testing Framework: Pytest
 - Database: PostgreSQL (with psycopg2)
 - Database Migrations: Alembic
@@ -70,16 +70,17 @@ git submodule update
 docker compose up
 ```
 
-### 3. Wait for the alembic Database upgrade
-This might take a while
+### 3. Wait for the alembic database upgrade
+This might take a while.
 
-## Farther discussion
-- Volume for the CLIP model.
-- Server return image_id then get image from CDN.
+## Further discussion
+- Volume for the CLIP model and images.
+- Server return image_id then client get image from CDN.
 - Index in vector search.
-- use join in SearchImageRecordPersistenceAdapter. 
-- async.
-- test case.
+- Use join in SearchImageRecordPersistenceAdapter. 
+    - reduce one I/O per feedback
+- Async.
+- Test case.
 
 ## Reference 
 - https://huggingface.co/docs/transformers/en/model_doc/clip
