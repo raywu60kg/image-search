@@ -33,10 +33,11 @@ def image_to_base64(image_path: str) -> str:
 
 def upgrade() -> None:
     conn = op.get_bind()
-    base64_image_list = [
-        image_to_base64(os.path.join(image_dir, file_name))
-        for file_name in os.listdir(image_dir)
+    image_paths = [
+        os.path.join(image_dir, file_name) for file_name in os.listdir(image_dir)
     ]
+    image_paths.sort()
+    base64_image_list = [image_to_base64(image_path) for image_path in image_paths]
     image_embedding = np.load(image_embedding_dir, allow_pickle=True)
 
     # Insert each vector with additional metadata

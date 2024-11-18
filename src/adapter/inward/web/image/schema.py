@@ -6,6 +6,6 @@ class ImageSearchRequest(BaseModel):
 
 
 class ImageSearchResponse(BaseModel):
-    search_record_id: int
+    search_image_record_id: int
     base64_image: str
     image_id: int

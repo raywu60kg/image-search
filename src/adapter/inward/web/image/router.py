@@ -26,7 +26,7 @@ def get_most_similar_image_by_clip_cosine_score(
         raise SearchImageRecordIdIsNone()
 
     return ImageSearchResponse(
-        search_record_id=search_image_record.search_image_record_id.value,
+        search_image_record_id=search_image_record.search_image_record_id.value,
         base64_image=search_image_record.result_image.base64_image,
         image_id=search_image_record.result_image.image_id.value,
     )

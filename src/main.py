@@ -12,6 +12,7 @@ from src.adapter.inward.web.image.router import router as image_router
 from src.adapter.outward.persistence.feedback.feedback_exception import (
     SearchImageRecordNotFoundInFeedbackMapperException,
 )
+from src.adapter.outward.persistence.image.image_exception import NoSimilarImage
 from src.adapter.outward.persistence.search_image_record.search_image_record_exception import (
     SearchImageRecordNotFoundInDatabaseException,
 )
@@ -52,13 +53,19 @@ app.add_exception_handler(
 )
 app.add_exception_handler(
     exc_class_or_status_code=SearchImageRecordIdIsNone,
-    handler=create_exception_handler(422, "search image record data process error."),  # type: ignore
+    handler=create_exception_handler(500, "search image record data process error."),  # type: ignore
 )
 
 app.add_exception_handler(
     exc_class_or_status_code=SearchImageRecordNotFoundInFeedbackMapperException,
-    handler=create_exception_handler(422, "Search image not found in feedback mapper!"),  # type: ignore
+    handler=create_exception_handler(500, "Search image not found in feedback mapper!"),  # type: ignore
 )
+
+app.add_exception_handler(
+    exc_class_or_status_code=NoSimilarImage,
+    handler=create_exception_handler(500, "No similar image!"),  # type: ignore
+)
+
 app.add_exception_handler(
     exc_class_or_status_code=SearchImageRecordNotFoundInDatabaseException,
     handler=create_exception_handler(404, "Search image not found in database"),  # type: ignore

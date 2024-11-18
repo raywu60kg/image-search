@@ -10,12 +10,12 @@ output_embedding_dir = "image_data/val2014_embeddings/clip.npy"
 
 model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")  # type: ignore
 processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")  # type: ignore
-
-
-images = [
-    Image.open(os.path.join(image_dir, file_name))
-    for file_name in os.listdir(image_dir)
+image_paths = [
+    os.path.join(image_dir, file_name) for file_name in os.listdir(image_dir)
 ]
+image_paths.sort()
+
+images = [Image.open(image_path) for image_path in image_paths]
 # Preprocess inputs
 inputs = processor(text="", images=images, return_tensors="pt", padding=True)  # type: ignore
 

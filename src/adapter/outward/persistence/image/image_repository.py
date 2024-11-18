@@ -26,7 +26,7 @@ class ImageRepository:
             res = session.execute(
                 select(ImageSqlalchemyModel)
                 .order_by(
-                    ImageSqlalchemyModel.image_embedding.cosine_distance(
+                    ImageSqlalchemyModel.image_embedding.max_inner_product(
                         text_query_vector.tolist()
                     )
                 )
